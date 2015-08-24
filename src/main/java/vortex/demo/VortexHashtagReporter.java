@@ -21,9 +21,6 @@ import org.omg.dds.sub.Sample;
 import org.omg.dds.topic.Topic;
 import vortex.commons.util.VConfig;
 
-/**
- * Created by tmcclean on 15-03-27.
- */
 public class VortexHashtagReporter {
 
     public static void main(String[] args) {

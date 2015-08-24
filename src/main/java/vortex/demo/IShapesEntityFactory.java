@@ -30,9 +30,6 @@ import java.util.concurrent.TimeUnit;
 import static vortex.commons.util.VConfig.DefaultEntities.defaultDomainParticipant;
 import static vortex.commons.util.VConfig.DefaultEntities.defaultPolicyFactory;
 
-/**
- * Created by tmcclean on 15-04-02.
- */
 public final class IShapesEntityFactory {
     static final String TYPE_NAME_TO_REGISTER =
             System.getProperty("dds.registerType", "ShapeType");
@@ -57,11 +54,10 @@ public final class IShapesEntityFactory {
                 .withMaxInstances(DS_MAX_INSTANCES)
                 .withMaxSamples(DS_MAX_SAMPLES)
                 .withMaxSamplesPerInstance(DS_MAX_SAMPLES_X_INSTANCE);
-        final TopicQos topicQos = defaultDomainParticipant().getDefaultTopicQos()
+
+        return defaultDomainParticipant().getDefaultTopicQos()
                 .withPolicy(durability)
                 .withPolicy(durabilityService);
-
-        return topicQos;
     }
 
     public static Topic<ShapeType> getTopic(String topicName) {
