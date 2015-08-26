@@ -13,6 +13,18 @@ In order to build for Vortex OpenSplice the OSPL_HOME environment variable must 
 mvn install -P ospl-build
 ```
 
+## Using vortex-spark
+### Create a stream for Vortex data
+```java
+JavaReceiverInputDStream<ShapeType> circleStream =
+    VortexUtils.createStream(jssc,                       // pointer to a JavaStreamingContext
+                            "Circle",                    // topic name
+                            "ShapeType",                 // name topic type was registered as
+                            ShapeType.class,             // topic type
+                            StorageLevel.MEMORY_ONLY()); // where the Spark data will be stored
+```
+
+
 # Vortex Overview
 PrismTech’s Vortex Intelligent Data Sharing Platform provides the leading implementations of the Object Management Group’s Data Distribution Service (DDS) for Real-time Systems standard. DDS is a middleware protocol and API standard for data-centric connectivity and is the only standard able to meet the advanced requirements of the Internet of Things (IoT). DDS provides the low-latency data connectivity, extreme reliability and scalability that business and mission-critical IoT applications need. For more information visit www.prismtech.com/vortex .
 
