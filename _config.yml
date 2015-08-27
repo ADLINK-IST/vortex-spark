@@ -1,0 +1,24 @@
+# Site settings
+name: PrismTech
+title: vortex-spark
+email: innovation@prismtech.com
+description: > # this means to ignore newlines until "baseurl:"
+  A connector for PrismTech's Vortex to enable distributed data analytics
+  of Vortex IoT/IIoT with Apache Spark
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://prismtech.github.io/vortex-spark" # the base hostname & protocol for your site
+twitter_username: VortexDDS
+github_username:  PrismTech
+
+# URL of your avatar or profile pic (you could use your GitHub profile pic)
+avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
+
+# Enter your Disqus shortname (not your username) to enable commenting on posts
+# You can find your shortname on the Settings page of your Disqus account
+disqus:
+
+# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
+google_analytics: UA-66686350-1
+
+# Build settings
+markdown: kramdown

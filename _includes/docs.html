@@ -1,0 +1,54 @@
+    <!-- ******DOCS****** --> 
+    <section id="docs" class="docs section">
+        <div class="container">
+            <div class="docs-inner">
+            <h2 class="title text-center">Get Started</h2>
+            <div class="block">
+                <h3 class="sub-title text-center">Create a Stream of Vortex Data</h3>
+                <p>To consume data from Vortex we need to create a receive input stream.</p>
+                
+                <div class="code-block">
+                    <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
+                    <pre><code class="language-java">JavaReceiverInputDStream&lt;ShapeType&gt; stream =
+                VortexUtils.createStream(jssc, "Circle", "ShapeType", 
+                                            ShapeType.class, 
+                                            StorageLevel.MEMORY_ONLY());</code></pre>
+                </div><!--//code-block-->
+            </div><!--//block-->
+            <div class="block">
+                <h3 class="sub-title text-center">Write Data to Vortex</h3>
+                <p>To write data to Vortex we need to create a writer.</p>
+                
+                <div class="code-block">
+                    <!--//Use Prismjs - http://prismjs.com/index.html#basic-usage -->
+                    <pre><code class="language-java">final int SHAPE_SIZE = 25;
+
+sortedCounts.foreach(rdd -> {
+    rdd.take(10).forEach(next -> {
+        String color = next._2;
+        try {
+            getWriter()
+                .write(new ShapeType(color, 
+                                      next._1, 
+                                      colorToY(color), 
+                                      SHAPE_SIZE));
+        } catch (TimeoutException e) {
+            // handle exception
+        }
+    });
+    return null;
+});
+
+private static DataWriter&lt;ShapeType&gt; getWriter() {    
+    final Topic&lt;ShapeType&gt; topic = IShapesEntityFactory.getTopic("Square");
+    final DataWriter&lt;ShapeType&gt; writer 
+            = defaultPub().createDataWriter(topic);
+
+    return vortexWriter.get();
+}
+                        </code></pre>
+                </div><!--//code-block-->
+            </div><!--//block-->
+            </div><!--//docs-inner-->         
+        </div><!--//container-->
+    </section><!--//docs->
